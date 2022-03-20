@@ -26,43 +26,36 @@ public class DisplayTickets extends HttpServlet {
             stmt = con.createStatement();
             String query = "SELECT * FROM tickets WHERE username ='" + name + "' ORDER BY booked_on DESC";
             ResultSet rs = stmt.executeQuery(query);
-            String user = rs.getString("username");
-            JSONObject results = new JSONObject();
+
             PrintWriter out = res.getWriter();
-            int i = 0;
-            ArrayList<JSONObject> arr = new ArrayList<JSONObject>();
+
             JSONObject jsons = new JSONObject();
             boolean isExisting = false;
-            if (rs.isBeforeFirst()) {
-
+            while (rs.next()) {
                 isExisting = true;
                 jsons.put("status", "success");
-                while (rs.next()) {
+                // out.print(rs.getString("movie_name"));
+                // out.print(rs.getString("theatre_name"));
+                // out.print(rs.getString("seat_no"));
+                // out.print(rs.getString("cost"));
+                // out.print(rs.getString("booked_on"));
 
-                    // out.print(rs.getString("movie_name"));
-                    // out.print(rs.getString("theatre_name"));
-                    // out.print(rs.getString("seat_no"));
-                    // out.print(rs.getString("cost"));
-                    // out.print(rs.getString("booked_on"));
-
-                    String movie = rs.getString("movie_name");
-                    String theatre = rs.getString("theatre_name");
-                    String seats = rs.getString("seat_no");
-                    String cost = rs.getString("cost");
-                    String booked = rs.getString("booked_on");
-                    jsons.put("status", "success");
-                    jsons.put("movie_name", movie);
-                    jsons.put("theatre", theatre);
-                    jsons.put("movie_name", movie);
-                    jsons.put("seats", seats);
-                    jsons.put("cost", cost);
-                    jsons.put("booked", booked);
-                    out.print(jsons.toString());
-
-                }
-                // out.print(arr);
+                String movie = rs.getString("movie_name");
+                String theatre = rs.getString("theatre_name");
+                String seats = rs.getString("seat_no");
+                String cost = rs.getString("cost");
+                String booked = rs.getString("booked_on");
+                jsons.put("status", "success");
+                jsons.put("movie_name", movie);
+                jsons.put("theatre", theatre);
+                jsons.put("movie_name", movie);
+                jsons.put("seats", seats);
+                jsons.put("cost", cost);
+                jsons.put("booked", booked);
+                out.print(jsons.toString());
+                break;
             }
-
+            // out.print(arr);
         } catch (Exception e) {
             e.printStackTrace();
         }
