@@ -36,5 +36,38 @@
         /signin
     </url-pattern>
   </servlet-mapping>
+ <!-- test servlet -->
+  <servlet>
+    <servlet-name>
+        store
+    </servlet-name>
+    <servlet-class>
+        com.book.SaveTickets
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        store
+    </servlet-name>
+    <url-pattern>
+        /store
+    </url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>
+        display
+    </servlet-name>
+    <servlet-class>
+        com.book.DisplayTickets
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        display
+    </servlet-name>
+    <url-pattern>
+        /display
+    </url-pattern>
+  </servlet-mapping>
 
 </web-app>

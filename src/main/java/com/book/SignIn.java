@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 
 import java.sql.Statement;
 
-import javax.imageio.spi.ImageWriterSpi;
-
 import org.json.JSONObject;
 
 import jakarta.servlet.http.HttpServlet;
@@ -18,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class SignIn extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.addHeader("Access-Control-Allow-Origin", "*");
-        String username = req.getParameter("name");
+        String username = req.getParameter("username");
         String pword = req.getParameter("password");
         PrintWriter out = res.getWriter();
         Statement stmt = null;
@@ -26,18 +24,17 @@ public class SignIn extends HttpServlet {
 
             Connection con = connector.return_connection();
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select name,password from users");
+            ResultSet rs = stmt.executeQuery("select username,password from users");
 
             Boolean isExisting = false;
             while (rs.next()) {
-                String uname = rs.getString("name");
+                String uname = rs.getString("username");
                 String pwd = rs.getString("password");
 
                 if (uname.equals(username) && pwd.equals(pword)) {
                     JSONObject jo = new JSONObject();
                     isExisting = true;
                     jo.put("status", "success");
-
                     jo.put("uname", uname);
                     out.print(jo.toString());
                     break;

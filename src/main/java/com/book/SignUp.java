@@ -18,10 +18,12 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         // TODO Auto-generated method stub
+        res.addHeader("Access-Control-Allow-Headers", "*");
         res.addHeader("Access-Control-Allow-Origin", "*");
         String uid = req.getParameter("id");
-        String username = req.getParameter("name");
+        String name = req.getParameter("username");
         String pwd = req.getParameter("password");
+        System.out.println(name);
         HttpSession session = req.getSession();
         PrintWriter out = res.getWriter();
         Boolean isExisiting = false;
@@ -29,11 +31,10 @@ public class SignUp extends HttpServlet {
         try {
             Connection con = connector.return_connection();
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select name from users");
-
+            ResultSet rs = stmt.executeQuery("select username from users");
             while (rs.next()) {
-                String uname = rs.getString("name");
-                if (uname.equals(username)) {
+                String uname = rs.getString("username");
+                if (uname.equals(name)) {
 
                     JSONObject jo = new JSONObject();
                     jo.put("status", "user already exists");
@@ -47,15 +48,16 @@ public class SignUp extends HttpServlet {
 
                 PreparedStatement pst = con.prepareStatement("INSERT INTO users VALUES(?,?,?)");
                 pst.setString(1, uid);
-                pst.setString(2, username);
+                pst.setString(2, name);
                 pst.setString(3, pwd);
+
                 pst.executeUpdate();
 
-                session.setAttribute("uname", username);
+                session.setAttribute("uname", name);
 
                 JSONObject jo = new JSONObject();
                 jo.put("status", "success");
-                jo.put("user", username);
+                jo.put("user", name);
                 out.print(jo.toString());
             }
 
