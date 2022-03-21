@@ -1,5 +1,6 @@
 com\book\SignUp.class
 com\book\connector.class
+com\book\SendBookings.class
 com\book\SaveTickets.class
 com\book\SignIn.class
 com\book\DisplayTickets.class

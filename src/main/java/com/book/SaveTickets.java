@@ -19,7 +19,6 @@ public class SaveTickets extends HttpServlet {
     static Connection con;
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
         res.addHeader("Access-Control-Allow-Headers", "*");
         res.addHeader("Access-Control-Allow-origin", "*");
         String jsonBody = new BufferedReader(new InputStreamReader(req.getInputStream())).lines().collect(
