@@ -36,6 +36,24 @@
         /signin
     </url-pattern>
   </servlet-mapping>
+  
+
+   <servlet>
+    <servlet-name>
+        checkseats
+    </servlet-name>
+    <servlet-class>
+        com.book.checkAvailability
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        checkseats
+    </servlet-name>
+    <url-pattern>
+        /findbookedseats
+    </url-pattern>
+  </servlet-mapping>
  <!-- test servlet -->
   <servlet>
     <servlet-name>
@@ -83,6 +101,56 @@
     </servlet-name>
     <url-pattern>
         /sendbooking
+    </url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>
+        testingcount
+    </servlet-name>
+    <servlet-class>
+        com.book.testingTicket
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        testingcount
+    </servlet-name>
+    <url-pattern>
+        /testingcount
+    </url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+    <servlet-name>
+        availability
+    </servlet-name>
+    <servlet-class>
+        com.book.markseats
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        availability
+    </servlet-name>
+    <url-pattern>
+        /markseats
+    </url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+    <servlet-name>
+        testingjson
+    </servlet-name>
+    <servlet-class>
+        com.book.getHomeInformation
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        testingjson
+    </servlet-name>
+    <url-pattern>
+        /testingjson
     </url-pattern>
   </servlet-mapping>
 
