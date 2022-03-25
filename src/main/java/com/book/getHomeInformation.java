@@ -46,9 +46,7 @@ public class getHomeInformation extends HttpServlet {
                 json.put("genre", rs.getString("movie_genre"));
                 array.put(json);
             }
-            for (int i = 0; i < array.length(); i++) {
-                out.println(array.getJSONObject(i));
-            }
+            out.write(array.toString());            
 
         } catch (Exception e) {
             e.printStackTrace();
