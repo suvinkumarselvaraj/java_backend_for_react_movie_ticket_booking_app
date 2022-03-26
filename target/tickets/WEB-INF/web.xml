@@ -188,6 +188,23 @@
         /gettheatre
     </url-pattern>
   </servlet-mapping>
+
+   <servlet>
+    <servlet-name>
+        getdates
+    </servlet-name>
+    <servlet-class>
+        com.book.getDates
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        getdates
+    </servlet-name>
+    <url-pattern>
+        /getdates
+    </url-pattern>
+  </servlet-mapping>
   
 
 </web-app>

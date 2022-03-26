@@ -3,7 +3,6 @@ package com.book;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
-
 import java.sql.Statement;
 
 import org.json.JSONArray;
@@ -13,31 +12,27 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class sendTheatreList extends HttpServlet {
+public class getDates extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
         res.setHeader("Access-Control-Allow-Headers", "*");
         res.setHeader("Access-Control-Allow-Origin", "*");
         String movie_id = req.getParameter("movie_id");
-        Integer id = Integer.parseInt(movie_id);
-        String query = "SELECT theatre_name, date FROM theatres " +
-                "INNER JOIN movie_theatre_info ON " +
-                "theatres.theatre_id = movie_theatre_info.theatre_id " +
-                "WHERE movie_theatre_info.movie_id =" + id +
-                " AND ABS(TIMESTAMPDIFF(MINUTE,CURRENT_TIME,movie_theatre_info.TIME))>30" +
-                " AND DATE >= CURRENT_DATE" +
-                " GROUP BY movie_theatre_info.theatre_id";
-
-        System.out.print(query);
-
+        String theatre_name = req.getParameter("theatre_name");
+        String id_query = "SELECT theatre_id FROM theatres WHERE theatre_name ='" + theatre_name + "'";
         try {
             Statement stmt;
             Connection con = getTheatreConnection.return_theatre_connection();
             stmt = con.createStatement();
-            ResultSet rst = stmt.executeQuery(query);
+            ResultSet rst = stmt.executeQuery(id_query);
+            rst.next();
+            int id = rst.getInt("theatre_id");
+            String date_query = "SELECT date,time FROM movie_theatre_info WHERE movie_id =" + movie_id +
+                    " AND theatre_id = " + id
+                    + " AND date >=CURRENT_DATE AND ABS(TIMESTAMPDIFF(MINUTE, CURRENT_TIME, time))>=30";
+            rst = stmt.executeQuery(date_query);
             JSONArray array = new JSONArray();
             while (rst.next()) {
                 JSONObject json = new JSONObject();
-                json.put("theatre_name", rst.getString("theatre_name"));
                 json.put("date", rst.getDate("date"));
                 array.put(json);
             }
