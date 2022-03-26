@@ -3,9 +3,12 @@ com\book\markseats.class
 com\book\connector.class
 com\book\SignIn.class
 com\book\DisplayTickets.class
+com\book\sendTheatreList.class
+com\book\testingTicket.class
+com\book\getTheatreConnection.class
 com\book\getHomeInformation.class
 com\book\getNewConnection.class
 com\book\SendBookings.class
 com\book\SaveTickets.class
+com\book\movieDescription.class
 com\book\checkAvailability.class
-com\book\testingTicket.class

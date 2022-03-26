@@ -154,4 +154,40 @@
     </url-pattern>
   </servlet-mapping>
 
+
+   <servlet>
+    <servlet-name>
+        moviedes
+    </servlet-name>
+    <servlet-class>
+        com.book.movieDescription
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        moviedes
+    </servlet-name>
+    <url-pattern>
+        /moviedescription
+    </url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>
+        gettheatre
+    </servlet-name>
+    <servlet-class>
+        com.book.sendTheatreList
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        gettheatre
+    </servlet-name>
+    <url-pattern>
+        /gettheatre
+    </url-pattern>
+  </servlet-mapping>
+  
+
 </web-app>
