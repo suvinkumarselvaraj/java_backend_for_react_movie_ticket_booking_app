@@ -19,13 +19,12 @@ public class sendTheatreList extends HttpServlet {
         res.setHeader("Access-Control-Allow-Origin", "*");
         String movie_id = req.getParameter("movie_id");
         Integer id = Integer.parseInt(movie_id);
-        String query = "SELECT theatre_name, date FROM theatres " +
-                "INNER JOIN movie_theatre_info ON " +
-                "theatres.theatre_id = movie_theatre_info.theatre_id " +
-                "WHERE movie_theatre_info.movie_id =" + id +
-                " AND ABS(TIMESTAMPDIFF(MINUTE,CURRENT_TIME,movie_theatre_info.TIME))>30" +
-                " AND DATE >= CURRENT_DATE" +
-                " GROUP BY movie_theatre_info.theatre_id";
+        String query = "SELECT theatre_name, date, time " +
+                "FROM movie_theatre_info INNER JOIN theatres " +
+                "ON movie_theatre_info.theatre_id = theatres.theatre_id " +
+                "WHERE movie_id = " + id
+                + " AND (date = CURRENT_DATE AND TIMESTAMPDIFF(MINUTE, CURRENT_TIME, time) > 30 " +
+                "|| date> CURRENT_DATE ) GROUP BY movie_theatre_info.theatre_id";
 
         System.out.print(query);
 
@@ -36,10 +35,17 @@ public class sendTheatreList extends HttpServlet {
             ResultSet rst = stmt.executeQuery(query);
             JSONArray array = new JSONArray();
             while (rst.next()) {
+
                 JSONObject json = new JSONObject();
-                json.put("theatre_name", rst.getString("theatre_name"));
-                json.put("date", rst.getDate("date"));
-                array.put(json);
+                String name = rst.getString("theatre_list");
+                System.out.println(name);
+                if (name != null) {
+
+                    json.put("theatre_name", rst.getString("theatre_name"));
+                    json.put("date", rst.getDate("date"));
+                    json.put("time", rst.getTime("time"));
+                    array.put(json);
+                }
             }
             PrintWriter out = res.getWriter();
             out.write(array.toString());

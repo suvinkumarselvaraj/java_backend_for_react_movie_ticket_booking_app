@@ -1,4 +1,5 @@
 com\book\getDates.class
+com\book\getTimings.class
 com\book\SignUp.class
 com\book\markseats.class
 com\book\connector.class
