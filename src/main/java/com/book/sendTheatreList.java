@@ -37,15 +37,12 @@ public class sendTheatreList extends HttpServlet {
             while (rst.next()) {
 
                 JSONObject json = new JSONObject();
-                String name = rst.getString("theatre_list");
-                System.out.println(name);
-                if (name != null) {
 
-                    json.put("theatre_name", rst.getString("theatre_name"));
-                    json.put("date", rst.getDate("date"));
-                    json.put("time", rst.getTime("time"));
-                    array.put(json);
-                }
+                json.put("theatre_name", rst.getString("theatre_name"));
+                json.put("date", rst.getDate("date"));
+                json.put("time", rst.getTime("time"));
+                array.put(json);
+
             }
             PrintWriter out = res.getWriter();
             out.write(array.toString());

@@ -28,7 +28,7 @@ public class getDates extends HttpServlet {
             int id = rst.getInt("theatre_id");
             String date_query = "SELECT date,time FROM movie_theatre_info WHERE movie_id =" + movie_id +
                     " AND theatre_id = " + id
-                    + " AND (date >CURRENT_DATE AND TIMESTAMPDIFF(MINUTE, CURRENT_TIME, time)>30 || date > CURRENT_DATE)";
+                    + " AND (date =CURRENT_DATE AND TIMESTAMPDIFF(MINUTE, CURRENT_TIME, time)>30 || date > CURRENT_DATE) ORDER BY date";
             rst = stmt.executeQuery(date_query);
             JSONArray array = new JSONArray();
             while (rst.next()) {
