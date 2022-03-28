@@ -6,6 +6,7 @@ com\book\connector.class
 com\book\SignIn.class
 com\book\DisplayTickets.class
 com\book\sendTheatreList.class
+com\book\getBookedSeats.class
 com\book\testingTicket.class
 com\book\getTheatreConnection.class
 com\book\getHomeInformation.class

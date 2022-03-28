@@ -223,6 +223,23 @@
     </url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>
+       getbookings
+    </servlet-name>
+    <servlet-class>
+        com.book.getBookedSeats
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        getbookings
+    </servlet-name>
+    <url-pattern>
+        /getbookings
+    </url-pattern>
+  </servlet-mapping>
+
   
   
 

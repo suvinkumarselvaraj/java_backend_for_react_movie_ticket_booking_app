@@ -6,6 +6,7 @@ d:\movie__ticket__backend\tickets\src\main\java\com\book\DisplayTickets.java
 d:\movie__ticket__backend\tickets\src\main\java\com\book\getNewConnection.java
 d:\movie__ticket__backend\tickets\src\main\java\com\book\checkAvailability.java
 d:\movie__ticket__backend\tickets\src\main\java\com\book\SaveTickets.java
+d:\movie__ticket__backend\tickets\src\main\java\com\book\getBookedSeats.java
 d:\movie__ticket__backend\tickets\src\main\java\com\book\getTheatreConnection.java
 d:\movie__ticket__backend\tickets\src\main\java\com\book\markseats.java
 d:\movie__ticket__backend\tickets\src\main\java\com\book\connector.java
