@@ -17,10 +17,10 @@ import jakarta.servlet.http.HttpSession;
 public class SignUp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        // TODO Auto-generated method stub
+
         res.addHeader("Access-Control-Allow-Headers", "*");
         res.addHeader("Access-Control-Allow-Origin", "*");
-        String uid = req.getParameter("id");
+
         String name = req.getParameter("username");
         String pwd = req.getParameter("password");
         System.out.println(name);
@@ -29,11 +29,11 @@ public class SignUp extends HttpServlet {
         Boolean isExisiting = false;
         Statement stmt = null;
         try {
-            Connection con = connector.return_connection();
+            Connection con = getNewConnection.return_connection();
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select username from users");
+            ResultSet rs = stmt.executeQuery("select user_name from users");
             while (rs.next()) {
-                String uname = rs.getString("username");
+                String uname = rs.getString("user_name");
                 if (uname.equals(name)) {
 
                     JSONObject jo = new JSONObject();
@@ -46,11 +46,9 @@ public class SignUp extends HttpServlet {
             }
             if (isExisiting == false) {
 
-                PreparedStatement pst = con.prepareStatement("INSERT INTO users VALUES(?,?,?)");
-                pst.setString(1, uid);
-                pst.setString(2, name);
-                pst.setString(3, pwd);
-
+                PreparedStatement pst = con.prepareStatement("INSERT INTO users(user_name, password) VALUES(?,?)");
+                pst.setString(1, name);
+                pst.setString(2, pwd);
                 pst.executeUpdate();
 
                 session.setAttribute("uname", name);
@@ -62,6 +60,7 @@ public class SignUp extends HttpServlet {
             }
 
         } catch (Exception e) {
+            System.out.println(e);
             JSONObject jo = new JSONObject();
             jo.put("status", "failed");
             jo.put("Exception", e);

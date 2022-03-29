@@ -240,6 +240,23 @@
     </url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>
+       savetickets
+    </servlet-name>
+    <servlet-class>
+        com.book.bookSeats
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>
+        savetickets
+    </servlet-name>
+    <url-pattern>
+        /savetickets
+    </url-pattern>
+  </servlet-mapping>
+
   
   
 

@@ -22,13 +22,13 @@ public class SignIn extends HttpServlet {
         Statement stmt = null;
         try {
 
-            Connection con = connector.return_connection();
+            Connection con = getNewConnection.return_connection();
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select username,password from users");
+            ResultSet rs = stmt.executeQuery("select user_name,password from users");
 
             Boolean isExisting = false;
             while (rs.next()) {
-                String uname = rs.getString("username");
+                String uname = rs.getString("user_name");
                 String pwd = rs.getString("password");
 
                 if (uname.equals(username) && pwd.equals(pword)) {
